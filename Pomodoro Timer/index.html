@@ -7,15 +7,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="container">
         <h1>Study Pomodoro Timer</h1>
-        <div class="timer-display" id="timer">25:00</div>
-        <div class="controls">
-            <button id="startBtn">Start</button>
-            <button id="pauseBtn">Pause</button>
-            <button id="resetBtn">Reset</button>
+
+        <div class="circle-wrapper">
+            <svg class="progress-ring" width="220" height="220">
+                <circle class="ring-bg" cx="110" cy="110" r="90" />
+                <circle class="ring-progress" cx="110" cy="110" r="90" />
+            </svg>
+            <div class="timer-text" id="timer">25:00</div>
         </div>
-        <div class="status" id="status"></div>
+
+        <div class="buttons">
+            <button id="start">Start</button>
+            <button id="pause">Pause</button>
+            <button id="reset">Reset</button>
+        </div>
+
+        <div class="modes">
+            <button class="mode-btn" data-time="25">Pomodoro</button>
+            <button class="mode-btn" data-time="5">Short Break</button>
+            <button class="mode-btn" data-time="15">Long Break</button>
+        </div>
     </div>
 
     <script src="script.js"></script>
