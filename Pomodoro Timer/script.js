@@ -1,60 +1,69 @@
-let timer;
-let timeLeft = 25 * 60; // 25 minutes in seconds
-let isRunning = false;
+let timerDisplay = document.getElementById("timer");
+let startBtn = document.getElementById("start");
+let pauseBtn = document.getElementById("pause");
+let resetBtn = document.getElementById("reset");
+let modeButtons = document.querySelectorAll(".mode-btn");
 
-const timerDisplay = document.getElementById('timer');
-const statusDisplay = document.getElementById('status');
+let timeLeft = 25 * 60;
+let duration = timeLeft;
+let timerInterval = null;
 
-function updateDisplay(seconds) {
-    const min = Math.floor(seconds / 60).toString().padStart(2, '0');
-    const sec = (seconds % 60).toString().padStart(2, '0');
-    timerDisplay.textContent = `${min}:${sec}`;
+const progress = document.querySelector(".ring-progress");
+const radius = 90;
+const circumference = 2 * Math.PI * radius;
+progress.style.strokeDasharray = circumference;
+progress.style.strokeDashoffset = 0;
+
+function updateCircle() {
+    const percent = timeLeft / duration;
+    progress.style.strokeDashoffset = circumference * (1 - percent);
 }
 
-// Callback function for countdown
-function countdown(callback) {
-    if (timeLeft <= 0) {
-        clearInterval(timer);
-        isRunning = false;
-        statusDisplay.textContent = "Time's up! Take a break!";
-        callback(); // Call the callback when timer ends
-        return;
-    }
-    updateDisplay(timeLeft);
-    timeLeft--;
+function updateDisplay() {
+    let m = Math.floor(timeLeft / 60);
+    let s = timeLeft % 60;
+    timerDisplay.textContent =
+        `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+    updateCircle();
 }
 
-// Start timer
-function startTimer() {
-    if (!isRunning) {
-        isRunning = true;
-        statusDisplay.textContent = "Focus on your study!";
-        timer = setInterval(() => countdown(() => alert("Pomodoro Completed!")), 1000);
-    }
-}
+startBtn.addEventListener("click", () => {
+    if (timerInterval) return;
 
-// Pause timer
-function pauseTimer() {
-    if (isRunning) {
-        clearInterval(timer);
-        isRunning = false;
-        statusDisplay.textContent = "Paused";
-    }
-}
+    timerInterval = setInterval(() => {
+        if (timeLeft > 0) {
+            timeLeft--;
+            updateDisplay();
+        } else {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            alert("Time's up!");
+        }
+    }, 1000);
+});
 
-// Reset timer
-function resetTimer() {
-    clearInterval(timer);
-    isRunning = false;
-    timeLeft = 25 * 60;
-    updateDisplay(timeLeft);
-    statusDisplay.textContent = "Timer Reset";
-}
+pauseBtn.addEventListener("click", () => {
+    clearInterval(timerInterval);
+    timerInterval = null;
+});
 
-// Event listeners
-document.getElementById('startBtn').addEventListener('click', startTimer);
-document.getElementById('pauseBtn').addEventListener('click', pauseTimer);
-document.getElementById('resetBtn').addEventListener('click', resetTimer);
+resetBtn.addEventListener("click", () => {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    timeLeft = duration;
+    updateDisplay();
+});
 
-// Initial display
-updateDisplay(timeLeft);
+modeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        let min = parseInt(btn.dataset.time);
+        timeLeft = min * 60;
+        duration = timeLeft;
+        updateDisplay();
+    });
+});
+
+updateDisplay();
+
