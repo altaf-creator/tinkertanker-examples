@@ -1,50 +1,84 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    /* Skibidi Ohio background */
-    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNhRW4X0zwKnX6r_xqRGFqMEg_uelOFDzX01S8yYrLKEdiqWZ_2Azrb88Vrr8xAMwiFKU&usqp=CAU') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
+    font-family: "Poppins", sans-serif;
+    background: #f6f8fb;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
 }
 
-
 .container {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 30px;
-    border-radius: 15px;
+    background: white;
+    padding: 40px;
+    width: 360px;
+    border-radius: 20px;
+    box-shadow: 0px 15px 45px rgba(0,0,0,0.08);
     text-align: center;
 }
 
 h1 {
-    margin-bottom: 20px;
-    font-size: 2em;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 25px;
+    color: #3a3a3a;
 }
 
-.timer-display {
-    font-size: 4em;
-    margin-bottom: 20px;
+.circle-wrapper {
+    position: relative;
+    width: 220px;
+    margin: 0 auto 25px auto;
 }
 
-.controls button {
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 1em;
+.progress-ring circle {
+    fill: none;
+    stroke-width: 12;
+    stroke-linecap: round;
+}
+
+.ring-bg {
+    stroke: #eaeaea;
+}
+
+.ring-progress {
+    stroke: #6c63ff;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
+    transition: stroke-dashoffset 0.4s ease;
+}
+
+.timer-text {
+    position: absolute;
+    top: 82px;
+    left: 0;
+    right: 0;
+    font-size: 48px;
+    font-weight: 600;
+    color: #333;
+}
+
+button {
+    padding: 10px 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 16px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    margin: 4px;
+    transition: 0.2s;
 }
 
-.controls button:hover {
-    background-color: #ff5722;
-    color: #fff;
+#start { background: #6c63ff; color: white; }
+#pause { background: #ffa82d; color: white; }
+#reset { background: #ff4f4f; color: white; }
+
+button:hover {
+    filter: brightness(0.92);
 }
 
-.status {
-    margin-top: 15px;
-    font-size: 1.2em;
+.mode-btn {
+    background: #ececec;
+    color: #333;
+}
+.mode-btn:hover {
+    background: #dcdcdc;
 }
