@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+body {
+    background: #111827;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background: #1f2937;
+    padding: 30px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.5);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.output-box {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+#passwordOutput {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px 0 0 8px;
+}
+
+#copyBtn {
+    padding: 10px 15px;
+    background: #3b82f6;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 0 8px 8px 0;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.generate {
+    background: #10b981;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.generate:hover {
+    background: #0d9b6d;
+}
