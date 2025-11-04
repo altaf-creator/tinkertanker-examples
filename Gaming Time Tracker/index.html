@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gaming Time Tracker</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+<h1>Gaming Time Tracker</h1>
+
+
+<div class="input-box">
+<input type="text" id="gameName" placeholder="Game name (e.g. Valorant)" />
+<input type="number" id="minutesPlayed" placeholder="Minutes played" />
+<button id="addBtn">Add Session</button>
+</div>
+
+
+<h2>Your Sessions</h2>
+<ul id="sessionList"></ul>
+
+
+<h2>Playtime Chart</h2>
+<canvas id="playChart"></canvas>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
