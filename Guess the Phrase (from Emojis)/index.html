@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the Emoji Phrase</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="container">
+        <h1>🤔 Guess the Phrase (Emoji Edition)</h1>
+
+        <div class="emoji-box" id="emojiBox">🎬⭐</div>
+
+        <input type="text" id="guessInput" placeholder="Type your guess here...">
+        <button onclick="checkGuess()">Submit</button>
+
+        <p id="message"></p>
+
+        <button class="next-btn" onclick="nextPuzzle()">Next Puzzle</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
