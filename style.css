@@ -52,6 +52,7 @@ body {
 	width: 100%;
 	height: 100%;
 	filter: brightness(80%);
+	object-fit: cover;
 }
 
 .banner-text {
@@ -142,4 +143,31 @@ body {
 
 .card-desc {
 	margin-inline: 32px;
+}
+
+.flex-container {
+	display: flex;
+	width: 100%;
+	gap: 12px;
+}
+
+.flex-container > * {
+	flex: 1;
+}
+
+.secondary-flex {
+	flex: 0;
+	min-width: 360px;
+}
+
+.general-img {
+	width: 100%;
+}
+
+.big-link {
+	margin-bottom: 12px;
+	display: block;
+	font-size: 2rem;
+	color: darkorange;
+	font-weight: bold;
 }
