@@ -12,28 +12,29 @@
         <p>Tap on a meal to add it to your cart:</p>
 
         <div class="menu-grid">
-            <div class="menu-item">
+            <div class="menu-item" onclick="addToCart('Burger', 4.00)"> 
                 <div class="image-box">
-                    <img src="burger.png" alt="Burger" onclick="addToCart('Burger', 4.00)">
+                    <img src="burger.png" alt="Burger"">
                 </div>
                 <h2>Burger - $4.00 (MOST POPULAR)</h2>
             </div>
 
-            <div class="menu-item">
+            <div class="menu-item" onclick="addToCart('Fish and Chips', 5.00)">
                 <div class="image-box">
-                    <img src="fishnchips.png" alt="Fish and Chips" onclick="addToCart('Fish and Chips', 5.00)">
+                    <img src="fishnchips.png" alt="Fish and Chips">
                 </div>
                 <h2>Fish and Chips - $5.00</h2>
             </div>
 
-            <div class="menu-item">
+            <div class="menu-item" onclick="addToCart('Takoyaki', 6.00)">
                 <div class="image-box">
-                    <img src="takoyaki.png" alt="Takoyaki" onclick="addToCart('Takoyaki', 6.00)">
+                    <img src="takoyaki.png" alt="Takoyaki">
                 </div>
                 <h2>Takoyaki - $6.00</h2>
             </div>
         </div>
-
+        <br>
+        <br>
         <div class="cart">
             <h2>Your Cart</h2>
             <table id="cartTable">
