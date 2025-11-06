@@ -39,11 +39,16 @@ p {
 }
 
 #PlaceOrder {
+    background-color:#c5f7c5;
     border-radius: 10px;
-    width: 25vh;
-    height: 5vh;
-    font-size: 2rem;
-    background-color: #f8f8f8;
+    width: 30vh;
+    height: 6vh;
+    font-size: 1.8rem;
+}
+
+#PlaceOrder:hover{
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 /* Menu Grid */
