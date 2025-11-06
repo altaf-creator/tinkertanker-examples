@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Pomodoro Timer</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="page">
 
     <div class="container">
-        <h1>Study Pomodoro Timer</h1>
+
+        <div class="mode-bar">
+            <button class="mode-btn active" data-time="25" data-color="#d46a6a" id="pomobtn">Pomodoro</button>
+            <button class="mode-btn" data-time="5" data-color="#6bbf72" id="shortbtn">Short Break</button>
+            <button class="mode-btn" data-time="15" data-color="#6aa3d4">Long Break</button>
+        </div>
 
         <div class="circle-wrapper">
             <svg class="progress-ring" width="220" height="220">
@@ -20,16 +24,9 @@
         </div>
 
         <div class="buttons">
-            <button id="start">Start</button>
-            <button id="pause">Pause</button>
-            <button id="reset">Reset</button>
+            <button id="start-pause">Start</button>
         </div>
 
-        <div class="modes">
-            <button class="mode-btn" data-time="25">Pomodoro</button>
-            <button class="mode-btn" data-time="5">Short Break</button>
-            <button class="mode-btn" data-time="15">Long Break</button>
-        </div>
     </div>
 
     <script src="script.js"></script>
