@@ -1,18 +1,21 @@
 const scoreSpan = document.getElementById("score");
 const upgrade67Btn = document.getElementById("upgrade67");
 const autoclickerBtn = document.getElementById("autoclicker");
+const autoclickerBtn2 = document.getElementById("autoclicker2");
 const pointerAutoclicker = document.getElementById("pointer");
 
 let score = 0;
 
 let upgrades = {
 	"67": { cost: 67, active: false },
-	"autoclicker": { cost: 100, active: false, interval : null }
+	"autoclicker": { cost: 100, active: false, interval : null },
+	"autoclicker2": { cost: 200, active: false, interval : null }
 };
 
 function updateUpgradeStates() {
 	upgrade67Btn.disabled = !(score >= upgrades["67"].cost && !upgrades["67"].active)
 	autoclickerBtn.disabled = !(score >= upgrades["autoclicker"].cost && !upgrades["autoclicker"].active)
+	autoclickerBtn2.disabled = !(score >= upgrades["autoclicker2"].cost && !upgrades["autoclicker2"].active)
 }
 
 updateUpgradeStates()
@@ -57,6 +60,18 @@ autoclickerBtn.addEventListener("click", () => {
 		score -= upgrades["autoclicker"].cost;
 		upgrades["autoclicker"].active = true;
 		upgrades["autoclicker"].interval = setInterval(clickerclick, 1000);
+		scoreSpan.innerHTML = "Score: " + score;
+		pointerAutoclicker.style.display = "inherit";
+	}
+	updateUpgradeStates();
+});
+
+autoclickerBtn2.addEventListener("click", () => {
+	clearInterval(upgrades["autoclicker"].interval)
+	if (score >= upgrades["autoclicker2"].cost && !upgrades["autoclicker2"].interval) {
+		score -= upgrades["autoclicker2"].cost;
+		upgrades["autoclicker2"].active = true;
+		upgrades["autoclicker2"].interval = setInterval(clickerclick, 400);
 		scoreSpan.innerHTML = "Score: " + score;
 		pointerAutoclicker.style.display = "inherit";
 	}
