@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Create your Skibidi!</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Why am I doing this to myself? -->
+
+	<h1>Create your Skibidi!</h1>
+
+	<div class="container">
+		<div class="subcontainer img-container">
+			<div class="img" id="toilettint">
+				<img style="width: 100%;" src="toilet.png" alt="" id="toilet">
+			</div>
+			<img class="img" src="toilet-mask.png" alt="">
+			<img class="img" src="head.png" alt="">
+			<img src="" alt="" id="hatnone">
+			<img class="img" src="hat1.png" alt="" id="hat1">
+			<img class="img" src="hat2.png" alt="" id="hat2">
+			<img class="img" src="hat3.png" alt="" id="hat3">
+		</div>
+		<div class="subcontainer">
+			<h2>Toilet Colour</h2>
+			<input type="color" id="toilet-col" name="toilet-col" value="#fff"/>
+			<h2>Hat Type</h2>
+			<div>
+				<button class="type-thing" onclick="prevHat()"><</button>
+				<span id="hat-label">No Hats</span>
+				<button class="type-thing" onclick="nextHat()">></button>
+			</div>
+		</div>
+	</div>
+
+	<script src="script.js" defer></script>
+</body>
+</html>

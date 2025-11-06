@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Clicker Game</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<span class="score" id="score">Score: 0</span>
+	<button class="the" onclick="clickerclick()">
+		Click me!
+		<img src="pointer_click.png" alt="" id="pointer">
+	</button>
+	<div class="upgrades">
+		<b>Upgrades:</b>
+		<button class="upgrade-btn" id="upgrade67" title="Cost: 50">
+			67
+			<span class="tooltip">Cost:&nbsp;67</span>
+		</button>
+		<button class="upgrade-btn" id="autoclicker" title="Cost: 100">
+			Autoclicker
+			<span class="tooltip">Cost:&nbsp;100</span>
+		</button>
+		<button class="upgrade-btn" id="autoclicker2" title="Cost: 100">
+			Autoclicker but Faster
+			<span class="tooltip">Cost:&nbsp;200</span>
+		</button>
+	</div>
+
+	<script src="script.js" defer></script>
+</body>
+</html>

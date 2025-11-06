@@ -1,0 +1,60 @@
+body {
+	width: 100%;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-flow: row;
+}
+
+.subcontainer {
+	flex-grow: 1;
+	height: 100%;
+	max-width: 50%;
+}
+
+.img-container {
+	position: relative;
+}
+
+.img {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	margin-bottom: 50%;
+	width: 80%;
+	aspect-ratio: 1;
+}
+
+.type-thing {
+	width: 64px;
+	height: 64px;
+}
+
+#hat1 {
+	display: none;
+}
+
+#hat2 {
+	display: none;
+}
+#hat3 {
+	display: none;
+}
+
+#toilettint {
+	background: var(--tint-color, #fff);
+	transition: background 0.2s ease;
+	mix-blend-mode: multiply;
+	aspect-ratio: 1/1;
+}
+
+#toilettint > img {
+	mix-blend-mode: multiply;
+}
