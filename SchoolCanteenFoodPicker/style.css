@@ -95,3 +95,12 @@ p {
     font-size: 1.2rem;
     color: #333;
 }
+
+.cartItem{
+    background-color: #c5f7c5;
+    width: 30vh;
+}
+
+th{
+    font-size: 1.2rem;
+}

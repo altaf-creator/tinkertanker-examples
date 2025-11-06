@@ -35,9 +35,9 @@ function updateCartDisplay() {
 
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${item.name}</td>
-            <td>$${item.price.toFixed(2)}</td>
-            <td>
+            <td class="cartItem">${item.name}</td>
+            <td class="cartItem">$${item.price.toFixed(2)}</td>
+            <td class="cartItem">
                 <input type="number" min="1" value="${item.quantity}"
                     onchange="changeQuantity('${item.name}', this.value)">
             </td>
