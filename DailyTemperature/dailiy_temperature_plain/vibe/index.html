@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Singapore Hourly Temperature Tracker</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f4f7fb;
+        color: #333;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #0078d7;
+      }
+
+      .container {
+        max-width: 700px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      select,
+      input[type="date"],
+      button {
+        padding: 10px;
+        margin: 10px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+      }
+
+      button {
+        background: #0078d7;
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      button:hover {
+        background: #005fa3;
+      }
+
+      canvas {
+        margin-top: 30px;
+        max-width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Singapore Hourly Temperature Tracker</h1>
+
+      <div>
+        <select id="locationSelect">
+          <option value="">Loading stations...</option>
+        </select>
+
+        <input type="date" id="dateInput" />
+
+        <button id="loadDataBtn">Load Temperature Data</button>
+      </div>
+
+      <canvas id="temperatureChart"></canvas>
+    </div>
+
+    <script>
+      const apiUrl = "https://api.data.gov.sg/v1/environment/air-temperature";
+      const locationSelect = document.getElementById("locationSelect");
+      const dateInput = document.getElementById("dateInput");
+      const ctx = document.getElementById("temperatureChart").getContext("2d");
+      let chart;
+
+      // Fetch available weather stations
+      async function loadStations() {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        const stations = data.metadata.stations;
+
+        locationSelect.innerHTML =
+          "<option value=''>Select a location</option>";
+        stations.forEach((station) => {
+          const opt = document.createElement("option");
+          opt.value = station.id;
+          opt.textContent = `${station.name} (${station.id})`;
+          locationSelect.appendChild(opt);
+        });
+      }
+
+      // Load temperature data for selected location & date
+      async function loadTemperature() {
+        const stationId = locationSelect.value;
+        const date = dateInput.value;
+
+        if (!stationId || !date) {
+          alert("Please select both location and date.");
+          return;
+        }
+
+        const url = `${apiUrl}?date=${date}`;
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const readings = data.items.map((item) => {
+          const reading = item.readings.find((r) => r.station_id === stationId);
+          return {
+            time: item.timestamp,
+            value: reading ? reading.value : null,
+          };
+        });
+
+        const labels = readings.map((r) =>
+          new Date(r.time).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })
+        );
+        const temperatures = readings.map((r) => r.value);
+
+        if (chart) chart.destroy();
+
+        chart = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels,
+            datasets: [
+              {
+                label: `Hourly Temperature (°C)`,
+                data: temperatures,
+                borderColor: "#0078d7",
+                borderWidth: 1.5,
+                pointRadius: 0,
+                fill: false,
+                tension: 0.2,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            animation: false,
+            plugins: {
+              legend: {display: true},
+              decimation: {
+                enabled: false,
+                algorithm: "lttb", // Largest Triangle Three Buckets for smooth decimation
+                samples: 288, // Keep around 288 samples for the day
+              },
+              title: {
+                display: true,
+                text: `Temperature at ${
+                  locationSelect.options[locationSelect.selectedIndex].text
+                } (${date})`,
+              },
+              tooltip: {
+                mode: "index",
+                intersect: false,
+                callbacks: {
+                  label: (ctx) => `${ctx.parsed.y.toFixed(1)} °C`,
+                },
+              },
+            },
+            scales: {
+              x: {
+                title: {display: true, text: "Time"},
+                ticks: {maxTicksLimit: 12},
+              },
+              y: {
+                title: {display: true, text: "Temperature (°C)"},
+                beginAtZero: false,
+              },
+            },
+          },
+        });
+      }
+
+      document
+        .getElementById("loadDataBtn")
+        .addEventListener("click", loadTemperature);
+      window.onload = loadStations;
+    </script>
+  </body>
+</html>
