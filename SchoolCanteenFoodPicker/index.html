@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<div style="width: 50%; position: fixed; bottom: 0; left: 0; background: white; border-top-right-radius: 1rem; display: flex; align-items: center; padding: .5rem; font-family: sans-serif; justify-content: space-between; z-index: 999; border-top: 1px solid grey; border-right: 1px solid grey;">
+		<span style="color: darkorange; font-weight: bold;">Tinkertanker Web Dev Examples Directory</span>
+		<a href="../" style="color: #0075FF">&larr; Go back</a>
+	</div>
     <div class="container">
         <h1>School Canteen Food Picker</h1>
         <p>Tap on a meal to add it to your cart:</p>
@@ -14,7 +18,7 @@
         <div class="menu-grid">
             <div class="menu-item" onclick="addToCart('Burger', 4.00)"> 
                 <div class="image-box">
-                    <img src="burger.png" alt="Burger"">
+                    <img src="burger.png" alt="Burger">
                 </div>
                 <h2>Burger - $4.00 (MOST POPULAR)</h2>
             </div>
